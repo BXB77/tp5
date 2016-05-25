@@ -1,20 +1,18 @@
 <?php
-class contact {
+class personne {
 	protected $id;
 	protected $nom;
 	protected $prenom;
-  protected $email;
   
-  function __construct($id,$nom,$prenom,$email)
+  function __construct($id,$nom,$prenom)
   {
     $this->id=$id;
     $this->nom=$nom;
     $this->prenom=$prenom;
-    $this->email=$email;
   }
   
   function __toString(){
-    return "id: ".$this->id.",nom: ".$this->nom.",prenom: ".$this->prenom.",email: ".$this->email;
+    return "id:".$this->id.",nom:".$this->nom.",prenom:".$this->prenom;
   }
   
   public function getNom()
@@ -34,9 +32,20 @@ class contact {
     $this->prenom = $qui;
   }
 }
-?>
 
-<?php
+class contact extends personne{
+  protected $email;
+  
+  function __construct($id,$nom,$prenom,$email){
+    parent::__construct($id,$nom,$prenom);
+    $this->email=$email;
+  }
+  
+  function __toString(){
+    return "id:".$this->id.",nom:".$this->nom.",prenom:".$this->prenom.",email:".$this->email;
+  }
+}
+
 $eleve=new contact(1,"de castro","benjamin","bdc@hotmail.fr");
 echo $eleve;
 ?>
